@@ -1,0 +1,18 @@
+﻿@model List<int>
+
+<h2>Data Temperatur</h2>
+
+<ul>
+    @foreach (var temperature in Model)
+    {
+        <li>@temperature</li>
+    }
+</ul>
+
+<div id="temperatureDisplay">Temperature: <span id="temperatureValue"></span></div>
+
+@section scripts {
+    <script src="~/js/temperature.js"></script>
+}
+
+<!-- Bagian HTML lainnya di halaman -->

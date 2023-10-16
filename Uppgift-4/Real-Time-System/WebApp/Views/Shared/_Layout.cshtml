@@ -53,7 +53,7 @@
     @await RenderSectionAsync("Scripts", required: false)
     <script>
         const connection = new signalR.HubConnectionBuilder()
-            .withUrl("/chatHub")  // Sesuaikan dengan URL hub Anda
+            .withUrl("https://127.0.0.1/chatHub")  // Sesuaikan dengan URL hub Anda
             .build();
 
         connection.start().then(() => {
@@ -62,9 +62,9 @@
             console.error(err.toString());
         });
 
-        connection.on("UpdateTemperature", (temperature) => {
-            // Di sinilah Anda dapat memperbarui tampilan dengan data temperatur yang baru
-            console.log("Temperature update received:", temperature);
+        onnection.on("ReceiveTemperatureUpdate", (deviceId, temperature) => {
+            // Di sini Anda dapat memperbarui tampilan dengan data temperatur yang baru
+            console.log("Temperature update received:", deviceId, temperature);
 
             // Contoh: perbarui elemen HTML dengan ID "temperatureDisplay"
             document.getElementById("temperatureDisplay").innerText = temperature;

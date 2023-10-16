@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
+using Server.Hubs;
 
 namespace Server.Controllers
 {
@@ -15,13 +16,16 @@ namespace Server.Controllers
             _hubContext = hubContext;
         }
 
+
         [HttpPost("send-temperature")]
         public IActionResult SendTemperature([FromBody] TemperatureData temperatureData)
         {
             // Proses data suhu dan kirim notifikasi ke perangkat melalui SignalR
-            _hubContext.Clients.All.SendAsync("ReceiveTemperature", temperatureData.Value);
+            _hubContext.Clients.All.SendAsync("ReceiveTemperature", temperatureData.DeviceId, temperatureData.Value);
 
             return Ok();
         }
+
+
     }
 }

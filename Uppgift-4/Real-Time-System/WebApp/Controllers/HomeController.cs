@@ -2,15 +2,15 @@
 using Microsoft.AspNetCore.SignalR;
 using System.Diagnostics;
 using WebApp.Models;
-using WebApp.Controllers;
+using WebApp.Hubs;
 
 namespace WebApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IHubContext<TemperatureHub> _hubContext;
+        private readonly IHubContext<WebApp.Hubs.TemperatureHub> _hubContext;
 
-        public HomeController(IHubContext<TemperatureHub> hubContext)
+        public HomeController(IHubContext<WebApp.Hubs.TemperatureHub> hubContext)
         {
             _hubContext = hubContext;
         }

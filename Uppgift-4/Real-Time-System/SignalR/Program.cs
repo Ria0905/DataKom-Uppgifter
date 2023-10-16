@@ -7,8 +7,7 @@ class Program
 {
     static async Task Main(string[] args)
     {
-        
-        var hubUrl = "https://localhost:7589/chatHub";
+        var hubUrl = "https://127.0.01/chatHub";
 
         var connection = new HubConnectionBuilder()
             .WithUrl(hubUrl)
@@ -26,7 +25,7 @@ class Program
         while (true)
         {
             var temperature = GenerateRandomTemperature();
-            await connection.InvokeAsync("SendTemperature", temperature);
+            await connection.InvokeAsync("SendTemperatureUpdate", "deviceId", temperature);
             Console.WriteLine($"Temperature sent: {temperature}");
 
             await Task.Delay(5000);
@@ -46,8 +45,8 @@ class Program
         var temperatureData = "temperature_data_to_encrypt";
         var encryptedData = encryptionService.Encrypt(temperatureData);
 
-        // Kirim encryptedData ke server melalui SignalR atau HTTP
-
+        // Send encryptedData to server via SignalR or HTTP
     }
 }
+
 

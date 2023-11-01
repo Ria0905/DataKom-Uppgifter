@@ -5,13 +5,13 @@ using WebApp;
 var builder = WebApplication.CreateBuilder(args);
 
 // Gunakan Startup.cs untuk konfigurasi
-builder.Services.AddRazorPages();
-builder.Services.AddControllers();
+//builder.Services.AddRazorPages();
+//builder.Services.AddControllers();
 
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddSignalR();
+//builder.Services.AddSignalR();
 
 
 var app = builder.Build();
@@ -29,8 +29,25 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+app.Use(async (context, next) =>
+{
+    context.Response.Headers.Add("Content-Security-Policy",
+        "default-src 'self' https://localhost:7084 wss://localhost:7084; " +
+        "connect-src 'self' https://localhost:7084 wss://localhost:7084 wss://localhost:44369/WebApplication-MVC/; " +
+        "script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; " +
+        "style-src 'self' 'unsafe-inline'; " +
+        "font-src 'self'; " +
+        "img-src 'self'; " +
+        "frame-src 'self'"
+        );
+
+    await next();
+});
+
 app.UseAuthorization();
 
-app.MapControllers(); // Use MapControllers instead of UseEndpoints for .NET 7
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

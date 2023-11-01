@@ -12,7 +12,7 @@
     <title>@ViewData["Title"] - WebApp</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/WebApp.styles.css" asp-append-version="true" />
+    @*@<link rel="stylesheet" href="~/WebApp.styles.css" asp-append-version="true" /> *@
 </head>
 <body>
     <header>
@@ -47,13 +47,15 @@
             &copy; 2023 - WebApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.9/signalr.min.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/Temprature.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
-    <script>
+@*    <script>
         const connection = new signalR.HubConnectionBuilder()
-            .withUrl("https://127.0.0.1/chatHub")  // Sesuaikan dengan URL hub Anda
+            .withUrl("https://127.0.0.1/chatHub")
             .build();
 
         connection.start().then(() => {
@@ -63,13 +65,13 @@
         });
 
         onnection.on("ReceiveTemperatureUpdate", (deviceId, temperature) => {
-            // Di sini Anda dapat memperbarui tampilan dengan data temperatur yang baru
+            // updates the display with new temperature data
             console.log("Temperature update received:", deviceId, temperature);
 
-            // Contoh: perbarui elemen HTML dengan ID "temperatureDisplay"
+            // Example: update HTML element with ID "temperatureDisplay"
             document.getElementById("temperatureDisplay").innerText = temperature;
         });
-    </script>
+    </script>*@
 
 </body>
 </html>

@@ -15,10 +15,6 @@ namespace Server.Hubs
             var messageRecieved = JsonConvert.DeserializeObject<DTO>(dto);
             var decryptedTemperature = DecryptTemperature(messageRecieved.Temperature);
 
-            //var decryptedTemperature = messageRecieved.Temperature;
-
-            // Här kan du hantera den dekrypterade temperaturen, t.ex. lagra den i en databas, logga den, etc.
-
             await Clients.All.SendAsync("UpdateTemperature", deviceId, decryptedTemperature);
         }
 
@@ -69,27 +65,5 @@ namespace Server.Hubs
         }
 
 
-
-        //// This method will be called when a client connects to the hub
-        //public async Task OnConnectedAsync()
-        //{
-        //    // Implement the logic when the client connects
-        //    await Clients.All.SendAsync("ReceiveMessage", "Server", "A client has connected");
-        //}
-
-        //// This method will be called when the client sends a message to the hub
-        //public async Task SendMessage(string user, string message)
-        //{
-        //    // Implement logic to respond to received messages
-        //    await Clients.All.SendAsync("ReceiveMessage", user, message);
-        //}
-
-        
-
-        //public async Task SendTemperatureUpdate(string deviceId, double temperature)
-        //{
-        //    // Send temperature updates to all connected clients
-        //    await Clients.All.SendAsync("ReceiveTemperatureUpdate", deviceId, temperature);
-        //}
     }
 }

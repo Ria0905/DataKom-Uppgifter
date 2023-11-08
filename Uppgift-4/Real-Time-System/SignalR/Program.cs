@@ -22,13 +22,6 @@ class Program
 
         await connection.StartAsync();
 
-        //connection.Closed += async (error) =>
-        //{
-        //    await Task.Delay(new Random().Next(0, 5) * 1000);
-        //    await connection.StartAsync();
-        //};
-
-        
 
         // Send temperature data every 5 seconds
         while (true)
@@ -40,9 +33,6 @@ class Program
             var jsonToSend = JsonConvert.SerializeObject(dto);
 
 
-
-            //await connection.InvokeAsync("SendTemperatureUpdate", "deviceId", temperature);
-            //Console.WriteLine($"Temperature sent: {temperature}");
 
             await connection.SendAsync("Device1", jsonToSend);
             await connection.SendAsync("Device2", jsonToSend);

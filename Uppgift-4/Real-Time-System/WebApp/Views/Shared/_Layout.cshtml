@@ -4,8 +4,7 @@
     <!--Adding Policies via Meta Tags in HTML-->
     <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';">
     
-    <!--Adding scrip SignalR-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.9/signalr.min.js"></script>
+ 
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -47,31 +46,12 @@
             &copy; 2023 - WebApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+    <!--Adding scrip SignalR-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.9/signalr.min.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="~/js/Temprature.js" asp-append-version="true"></script>
+    <script src="~/js/temperature.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
-@*    <script>
-        const connection = new signalR.HubConnectionBuilder()
-            .withUrl("https://127.0.0.1/chatHub")
-            .build();
-
-        connection.start().then(() => {
-            console.log("Connected to SignalR Hub");
-        }).catch((err) => {
-            console.error(err.toString());
-        });
-
-        onnection.on("ReceiveTemperatureUpdate", (deviceId, temperature) => {
-            // updates the display with new temperature data
-            console.log("Temperature update received:", deviceId, temperature);
-
-            // Example: update HTML element with ID "temperatureDisplay"
-            document.getElementById("temperatureDisplay").innerText = temperature;
-        });
-    </script>*@
-
 </body>
 </html>

@@ -1,13 +1,13 @@
 // temperature.js
 
 var connection = new signalR.HubConnectionBuilder()
-    .withUrl("/temperatureHub") // Sesuaikan dengan path hub Anda
+    .withUrl("https://localhost:7084/chathub")
     .build();
 
-// Tangkap pembaruan suhu dari server
-connection.on("ReceiveTemperatureUpdate", function (deviceId, temperature) {
-    // Lakukan sesuatu dengan pembaruan suhu yang diterima
-    console.log(`Received temperature update for device ${deviceId}: ${temperature}°C`);
+
+connection.on("Device1", function (temperature) {
+
+    console.log(`Received temperature update for device 1: ${temperature}°C`);
 });
 
 connection.start()
